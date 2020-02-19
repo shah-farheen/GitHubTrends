@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fontSizeDefault">15sp</dimen>
+    <dimen name="fontSizeSmall">12sp</dimen>
+    <dimen name="fontSizeMedium">18sp</dimen>
+    <dimen name="fontSizeLarge">21sp</dimen>
+
+    <dimen name="iconSizeSmall">24dp</dimen>
+
+    <dimen name="imgSizeDefault">32dp</dimen>
+    <dimen name="imgSizeSmall">16dp</dimen>
+
+    <!--  Margin Sizes  -->
+    <dimen name="marginDefault">16dp</dimen>
+    <dimen name="marginVeryTiny">2dp</dimen>
+    <dimen name="marginTiny">4dp</dimen>
+    <dimen name="marginVerySmall">6dp</dimen>
+    <dimen name="marginSmall">8dp</dimen>
+    <dimen name="marginMedium">14dp</dimen>
+    <dimen name="marginLarge">21dp</dimen>
+    <dimen name="marginVeryLarge">24dp</dimen>
+
+    <dimen name="dividerDefault">1dp</dimen>
+    <dimen name="details_height">5dp</dimen>
+
+    <dimen name="btn_radius_default">4dp</dimen>
+    <dimen name="btn_height_default">48dp</dimen>
+    <dimen name="btn_width_default">328dp</dimen>
+</resources>

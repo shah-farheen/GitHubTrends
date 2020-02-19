@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">HubTrends</string>
+    <string name="trending">Trending</string>
+    <string name="something_went_wrong">Something went wrong..</string>
+    <string name="alien_error_text">An alien is probably blocking your signal.</string>
+    <string name="retry">Retry</string>
+    <string name="remote_fetch_error">Unable to refresh…</string>
+    <string name="sort_by_stars">Sort by stars</string>
+    <string name="sort_by_name">Sort by name</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

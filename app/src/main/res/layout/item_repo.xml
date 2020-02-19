@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_repo_details_background"
+        android:orientation="vertical"
+        android:stateListAnimator="@animator/repo_details_selection"
+        tools:ignore="UnusedAttribute">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/marginDefault"
+            android:paddingEnd="@dimen/marginDefault">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_dp"
+                android:layout_width="@dimen/imgSizeDefault"
+                android:layout_height="@dimen/imgSizeDefault"
+                android:layout_marginTop="@dimen/marginLarge"
+                android:layout_marginEnd="@dimen/marginDefault"
+                android:layout_marginBottom="@dimen/marginLarge"
+                tools:ignore="ContentDescription"
+                tools:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tv_repo_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/iv_dp"
+                android:layout_toEndOf="@id/iv_dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_regular"
+                android:maxLines="1"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/fontSizeSmall"
+                tools:text="Hello" />
+
+            <TextView
+                android:id="@+id/tv_repo_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_repo_author"
+                android:layout_toEndOf="@id/iv_dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_medium"
+                android:maxLines="1"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/fontSizeDefault"
+                tools:text="Repo Name" />
+
+            <LinearLayout
+                android:id="@+id/layout_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_repo_name"
+                android:layout_marginTop="@dimen/marginSmall"
+                android:layout_marginBottom="@dimen/marginDefault"
+                android:layout_toEndOf="@id/iv_dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_repo_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:maxLines="2"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="@dimen/fontSizeSmall"
+                    tools:text="Repo details lorem ipsum dolor lorem ipsum dolor" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginSmall"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/layout_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/marginSmall"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_language_color"
+                            android:layout_width="@dimen/imgSizeSmall"
+                            android:layout_height="@dimen/imgSizeSmall"
+                            android:padding="@dimen/marginTiny"
+                            tools:ignore="ContentDescription"
+                            tools:src="#000000" />
+
+                        <TextView
+                            android:id="@+id/tv_language"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/colorSecondaryText"
+                            android:textSize="@dimen/fontSizeSmall"
+                            tools:text="C++" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_stars"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/marginSmall"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="@dimen/imgSizeSmall"
+                            android:layout_height="@dimen/imgSizeSmall"
+                            android:padding="@dimen/marginVeryTiny"
+                            android:src="@drawable/ic_star"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/tv_stars"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/colorSecondaryText"
+                            android:textSize="@dimen/fontSizeSmall"
+                            tools:text="14,236" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_forks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/marginSmall"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="@dimen/imgSizeSmall"
+                            android:layout_height="@dimen/imgSizeSmall"
+                            android:padding="@dimen/marginVeryTiny"
+                            android:src="@drawable/ic_forks"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/tv_forks"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/colorSecondaryText"
+                            android:textSize="@dimen/fontSizeSmall"
+                            tools:text="4,376" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dividerDefault"
+            android:background="@color/colorDividerDefault" />
+    </LinearLayout>
+</layout>

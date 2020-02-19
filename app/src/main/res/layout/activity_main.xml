@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorDividerDefault"
+        android:orientation="vertical"
+        tools:context=".ui.main.MainActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_action_bar"
+            android:layout_marginBottom="@dimen/dividerDefault"
+            android:background="@color/colorPrimary"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/marginMedium"
+                    android:layout_marginBottom="@dimen/marginMedium"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="@string/trending"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/fontSizeLarge"
+                    android:textStyle="bold"
+                    tools:ignore="RelativeOverlap" />
+
+                <ImageView
+                    android:id="@+id/iv_three_dots"
+                    android:layout_width="@dimen/iconSizeSmall"
+                    android:layout_height="@dimen/iconSizeSmall"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/marginDefault"
+                    android:src="@drawable/ic_three_dots"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_repos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="0"
+                    tools:listitem="@layout/item_repo" />
+
+                <include
+                    android:id="@+id/layout_no_connection"
+                    layout="@layout/layout_no_connection" />
+
+                <TextView
+                    android:id="@+id/tv_retry"
+                    android:layout_width="@dimen/btn_width_default"
+                    android:layout_height="@dimen/btn_height_default"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="@dimen/marginDefault"
+                    android:layout_marginEnd="@dimen/marginDefault"
+                    android:layout_marginBottom="@dimen/marginDefault"
+                    android:background="@drawable/shape_rect_outline_green_r4"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="@string/retry"
+                    android:textAllCaps="true"
+                    android:textColor="@color/errorGreen"
+                    android:textSize="@dimen/fontSizeDefault" />
+
+                <ProgressBar
+                    android:id="@+id/pb_loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </RelativeLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    </LinearLayout>
+</layout>
