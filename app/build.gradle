@@ -25,7 +25,7 @@ android {
         debug {
             buildConfigField("boolean", "IS_DEBUG", "true")
             buildConfigField("String", "BASE_URL", "\"https://github-trending-api.now.sh/\"")
-            minifyEnabled true
+            minifyEnabled false
         }
         release {
             buildConfigField("boolean", "IS_DEBUG", "false")
@@ -92,4 +92,7 @@ dependencies {
 
     // CircularImageView
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+
+    // ViewPager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 }

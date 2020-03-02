@@ -1,11 +1,10 @@
-package com.buggyarts.hubtrends.ui.main
+package com.buggyarts.hubtrends.ui.devs
 
 import com.buggyarts.hubtrends.di.component.RepositoryComponent
 import com.buggyarts.hubtrends.ui.base.BaseViewModel
 
-class MainViewModel : BaseViewModel() {
+class DevelopersViewModel : BaseViewModel() {
 
     override fun initRepository(repositoryComponent: RepositoryComponent) {
-        repositoryComponent.inject(this)
     }
 }

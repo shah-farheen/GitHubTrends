@@ -1,28 +1,25 @@
 package com.buggyarts.hubtrends.ui.main
 
-import android.os.Bundle
-import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProviders
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.buggyarts.hubtrends.R
-import com.buggyarts.hubtrends.data.model.repositories.GitHubRepo
 import com.buggyarts.hubtrends.databinding.ActivityMainBinding
 import com.buggyarts.hubtrends.ui.base.BaseActivity
+import com.buggyarts.hubtrends.ui.devs.DevelopersFragment
+import com.buggyarts.hubtrends.ui.repositories.RepositoriesFragment
 
 class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
-    private lateinit var repoAdapter: RepoAdapter
     private lateinit var popupMenu: PopupMenu
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.getRepos()
-        binding.pbLoading.visibility = View.VISIBLE
-    }
 
     /**
      * Set binding and viewModels here as this is the first thing executed in onCreate()
@@ -35,31 +32,28 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initViews() {
-        // init recycler with Adapter
-        repoAdapter = RepoAdapter(ArrayList(), this)
-        binding.rvRepos.adapter = repoAdapter
-
         // init PopupMenu
         popupMenu = PopupMenu(this, binding.ivThreeDots)
         popupMenu.inflate(R.menu.menu_main)
+
+        binding.viewPager.adapter = MainViewPagerAdapter(this)
+        binding.viewPager.setPageTransformer(null)
+        binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+//        binding.viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
+//        supportFragmentManager.beginTransaction()
+//            .add(binding.container.id, RepositoriesFragment.newInstance())
+//            .commit()
     }
 
     override fun initListeners() {
-        popupMenu.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.menu_item_stars -> repoAdapter.sortByStars()
-                R.id.menu_item_name -> repoAdapter.sortByName()
-            }
-            return@setOnMenuItemClickListener true
-        }
-
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getReposFromRemote()
-        }
-
-        binding.tvRetry.setOnClickListener {
-            viewModel.getRepos()
-        }
+//        popupMenu.setOnMenuItemClickListener {
+//            when (it.itemId) {
+//                R.id.menu_item_stars -> repoAdapter.sortByStars()
+//                R.id.menu_item_name -> repoAdapter.sortByName()
+//            }
+//            return@setOnMenuItemClickListener true
+//        }
 
         binding.ivThreeDots.setOnClickListener {
             popupMenu.show()
@@ -67,37 +61,29 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initObservers() {
-        viewModel.repos.observe(this,
-            Observer<List<GitHubRepo>> {
-                binding.swipeRefreshLayout.isRefreshing = false
-                binding.pbLoading.visibility = View.GONE
-                if (it != null) {
-                    repoAdapter.clearRepos()
-                    repoAdapter.addRepos(it as ArrayList<GitHubRepo>)
-                }
-            })
-
-        viewModel.toShowErrorState.observe(this,
-            Observer<Boolean> {
-                showErrorState(it)
-            })
-
-        viewModel.toShowRemoteFetchError.observe(this,
-            Observer<Boolean> {
-                if (it) {
-                    showShortToast(getString(R.string.remote_fetch_error))
-                }
-            })
     }
 
-    private fun showErrorState(toShow: Boolean) {
-        if (toShow) {
-            repoAdapter.clearRepos()
-            binding.layoutNoConnection.visibility = View.VISIBLE
-            binding.tvRetry.visibility = View.VISIBLE
-        } else {
-            binding.layoutNoConnection.visibility = View.GONE
-            binding.tvRetry.visibility = View.GONE
+    class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+        override fun getItem(position: Int): Fragment {
+            return when (position) {
+                0 -> RepositoriesFragment.newInstance()
+                else -> DevelopersFragment()
+            }
+        }
+
+        override fun getCount(): Int = 2
+    }
+
+    class MainViewPagerAdapter(fragmentActivity: FragmentActivity) :
+        FragmentStateAdapter(fragmentActivity) {
+
+        override fun getItemCount(): Int = 2
+
+        override fun createFragment(position: Int): Fragment {
+            return when (position) {
+                0 -> RepositoriesFragment.newInstance()
+                else -> DevelopersFragment()
+            }
         }
     }
 }

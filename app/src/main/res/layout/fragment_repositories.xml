@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".ui.repositories.RepositoriesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_repos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_repo" />
+
+            <include
+                android:id="@+id/layout_no_connection"
+                layout="@layout/layout_no_connection"
+                android:visibility="gone"
+                tools:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_retry"
+                android:layout_width="@dimen/btn_width_default"
+                android:layout_height="@dimen/btn_height_default"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/marginDefault"
+                android:layout_marginEnd="@dimen/marginDefault"
+                android:layout_marginBottom="@dimen/marginDefault"
+                android:background="@drawable/shape_rect_outline_green_r4"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="@string/retry"
+                android:textAllCaps="true"
+                android:textColor="@color/errorGreen"
+                android:textSize="@dimen/fontSizeDefault"
+                android:visibility="gone"
+                tools:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/pb_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                tools:visibility="gone" />
+
+        </RelativeLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>
